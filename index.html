@@ -1,0 +1,396 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- Link library leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin="" />
+
+ <!-- W3 CSS template -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+crossorigin="">
+</script>
+
+ <style>
+#mapid {
+height: 800px;
+}
+</style>
+<title>Tourist map</title>
+</head>
+<body>
+<br>
+  <center><h1 style="color: white;">𝘾𝙝𝙞𝙖𝙣𝙜 𝙍𝙖𝙞 𝑻𝒐𝒖𝒓𝒊𝒔𝒕</h1></center>
+    <body bgcolor ='#5F9EA0'>
+      <h5>by 𝓦𝓪𝓻𝓪𝓹𝓸𝓻𝓷  𝓢𝓾𝓫𝓻𝓪𝓫𝓮𝓪𝓫</h5>
+<br>
+<!-- แบ่งหน้าจอ -->
+<div class="w3-row">
+<div id="mapid" class="w3-half"></div>
+<div id="content" class="w3-half">
+<table class="w3-table w3-striped">
+<tr>
+<th>ชื่อแหล่งท่องเที่ยว</th>
+<th>ประเภท</th>
+<th>ระดับ</th>
+</tr>
+<tr>
+<td>น้ำตก A</td>
+<td>ธรรมชาติ</td>
+<td>A</td>
+</tr>
+</table>
+</div>
+</div>
+
+<!-- เรียกแผนที่ขึ้นมาแสดง -->
+<script>
+//เรียกแผนที่
+var map = L.map("mapid").setView([19.89952297504896, 100.06101173241636],10);
+//basemap1
+var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+//basemap2
+var gsat = L.tileLayer("https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}")
+.addTo(map);
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png').addTo(map);
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(map);
+var baseMaps ={
+  //ชื่อชั้นข้อมูล : ตัวแปร
+  OSM:osm,
+  GoogleSat:gsat,
+  OpenTopoMap : OpenTopoMap,
+  Esri_WorldImagery:Esri_WorldImagery,
+};
+//add data
+var tourpoint = {
+    type: "FeatureCollection",
+    name: "tour_plk",
+    crs: {
+      type: "name",
+      properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" },
+},
+features: [
+  {
+        type: "Feature",
+        properties: {
+        Name: "วัดร่องขุ่น",
+        Type: "วัฒนธรรม",
+        FID_1: 1358.0,
+        CHANGWAT: "เชียงราย",
+        PROVINCE_1: "chiangrai",
+        REGION: "ภาคเหนือ",
+        level: "👏🏻👏🏻👏🏻👏🏻👏🏻",
+     },
+     geometry: {
+        type: "MultiPoint",
+        coordinates: [[ 99.76364919728147,19.82432108191123]],
+},
+},
+{
+        type: "Feature",
+        properties: {
+        Name: "ภูชี้ฟ้า",
+        Type: "ธรรมชาติ",
+        FID_1: 1357.0,
+        CHANGWAT: "เชียงราย",
+        PROVINCE_1: "chiangrai",
+        REGION: "ภาคเหนือ",
+        level: "👏🏻👏🏻👏🏻👏🏻👏🏻",
+},
+      geometry: {
+       type: "MultiPoint",
+       coordinates: [[100.45384594096669,19.851443122219436]],
+},
+},
+{
+        type: "Feature",
+        properties: {
+        Name: "จุดชมวิวดอยสะโง้",
+        Type: "ธรรมชาติ",
+        FID_1: 1362.0,
+        CHANGWAT: "เชียงราย",
+        PROVINCE_1: "chiangrai",
+        REGION: "ภาคเหนือ",
+        level: "👏🏻👏🏻👏🏻👏🏻👏🏻",
+},
+      geometry: {
+       type: "MultiPoint",
+       coordinates: [[100.5200902599656,19.978312914551548]],
+},
+},
+{
+        type: "Feature",
+        properties: {
+        Name: "ไร่ชาฉุยฟง",
+        Type: "ธรรมชาติ",
+        FID_1: 1364.0,
+        CHANGWAT: "เชียงราย",
+        PROVINCE_1: "chiangrai",
+        REGION: "ภาคเหนือ",
+        level: "👏🏻👏🏻👏🏻👏🏻",
+},
+      geometry: {
+       type: "MultiPoint",
+       coordinates: [[99.81667811341404,20.200235086748908]],
+},
+},
+{
+       type: "Feature",
+       properties: {
+       Name: "ดอยแม่มอญ",
+       Type: "ธรรมชาติ",
+       FID_1: 1355.0,
+       CHANGWAT: "เชียงราย",
+       PROVINCE_1: "chiangrai",
+       REGION: "ภาคเหนือ",
+       level: "👏🏻👏🏻👏🏻👏🏻",
+},
+    geometry: {
+     type: "MultiPoint",
+     coordinates: [[99.66816159492588,19.82525127486944]],
+},
+},
+],
+};
+//add marker and popup
+var tourLayer = L.geoJSON(tourpoint, {
+pointToLayer: function (feature, latlng) {
+return L.marker(latlng).bindPopup(feature.properties.Name);
+},
+onEachFeature: function (feature, layer) {
+layer.on("mouseover", function () {
+document
+.getElementById(feature.properties.FID_1)
+.classList.add("w3-red");
+});
+
+ layer.on("mouseout", function () {
+document
+.getElementById(feature.properties.FID_1)
+.classList.remove("w3-red");
+});
+},
+}).addTo(map);
+// link lable with popup control
+var cont = "";
+cont += "<table class='w3-table w3-striped'>";
+cont += "<tr>";
+cont += "<th>ชื่อแหล่งท่องเที่ยว</th>";
+cont += "<th>ประเภท</th>";
+cont += "<th>ระดับ</th>";
+cont += "</tr>";
+for (let i in tourpoint.features) {
+cont += "<tr id=" + tourpoint.features[i].properties.FID_1 + ">";
+cont += "<td>" + tourpoint.features[i].properties.Name + "</td>";
+cont += "<td>" + tourpoint.features[i].properties.Type + "</td>";
+cont += "<td>" + tourpoint.features[i].properties.level + "</td>";
+cont += "</tr>";
+}
+cont += "</table>";
+console.log(cont);
+document.getElementById("content").innerHTML = cont;
+//create polygon
+var polygonGeoJson =
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.4647216796875,
+              20.385825381874263
+            ],
+            [
+              99.51416015625,
+              20.3034175184893
+            ],
+            [
+              99.569091796875,
+              20.195190636474504
+            ],
+            [
+              99.503173828125,
+              20.097206227083888
+            ],
+            [
+              99.45373535156249,
+              20.045610827439717
+            ],
+            [
+              99.393310546875,
+              19.82355782477137
+            ],
+            [
+              99.2559814453125,
+              19.642587534013032
+            ],
+            [
+              99.30541992187499,
+              19.518375478601566
+            ],
+            [
+              99.30541992187499,
+              19.368158505739146
+            ],
+            [
+              99.3328857421875,
+              19.238549860797406
+            ],
+            [
+              99.31640625,
+              19.160735484156255
+            ],
+            [
+              99.371337890625,
+              19.062117883514652
+            ],
+            [
+              99.393310546875,
+              19.02057711096681
+            ],
+            [
+              99.4866943359375,
+              19.072501451715087
+            ],
+            [
+              99.54711914062499,
+              19.119219453414097
+            ],
+            [
+              99.5635986328125,
+              19.394067895396613
+            ],
+            [
+              99.6514892578125,
+              19.394067895396613
+            ],
+            [
+              99.766845703125,
+              19.435514339097825
+            ],
+            [
+              99.9591064453125,
+              19.425153718960143
+            ],
+            [
+              100.0909423828125,
+              19.54426088484117
+            ],
+            [
+              100.162353515625,
+              19.596019240312494
+            ],
+            [
+              100.2447509765625,
+              19.61671792534097
+            ],
+            [
+              100.30517578125,
+              19.673625561844393
+            ],
+            [
+              100.4315185546875,
+              19.782211275967995
+            ],
+            [
+              100.56884765624999,
+              20.16941122761028
+            ],
+            [
+              100.3765869140625,
+              20.3034175184893
+            ],
+            [
+              100.32714843749999,
+              20.385825381874263
+            ],
+            [
+              100.250244140625,
+              20.406420474920292
+            ],
+            [
+              100.1953125,
+              20.33432561683554
+            ],
+            [
+              100.1568603515625,
+              20.21581109239457
+            ],
+            [
+              100.0909423828125,
+              20.287961155077717
+            ],
+            [
+              100.01953125,
+              20.406420474920292
+            ],
+            [
+              99.931640625,
+              20.447602397594167
+            ],
+            [
+              99.82177734375,
+              20.432160468556077
+            ],
+            [
+              99.78881835937499,
+              20.33947636615292
+            ],
+            [
+              99.5855712890625,
+              20.34462694382967
+            ],
+            [
+              99.4647216796875,
+              20.385825381874263
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
+var polygonLayer = L.geoJSON(polygonGeoJson, {
+style: function (feature) {
+return {fillcolor:'#FFCC00',weight:2,
+       opacity: 1,
+       color:'#FFFF99',//Outline bgcolor
+       fillOpacity: 0.4 };
+},
+onEachFeature: function (feature, layer) {
+layer.bindPopup(feature.properties.name);
+
+ layer.on("mouseover", function () {
+layer.openPopup();
+});
+
+ layer.on("mouseout", function () {
+layer.closePopup();
+});
+},
+});
+
+//group point+polygon layer
+var overlays = {
+สถานที่ท่องเที่ยว:tourLayer,
+ขอบเขตอุทยาน:polygonLayer
+};
+
+//Create layer control
+L.control.layers(baseMaps,overlays).addTo(map);
+
+</script>
+
+</body>
+</html>
